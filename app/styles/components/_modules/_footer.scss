@@ -1,7 +1,9 @@
 footer {
+  @extend .clear;
+  display: block;
   height: 120px;
   line-height: 120px;
-  background: $foolsGold;
+  background: $colorLearning;
 
   a {
     color: inherit;

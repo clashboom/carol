@@ -1855,9 +1855,10 @@ div.highlight > pre > code .il, code .highlight .il {
 }
 
 footer {
+  display: block;
   height: 120px;
   line-height: 120px;
-  background: #c6b712;
+  background: #da2e75;
 }
 footer a {
   color: inherit;
@@ -3327,11 +3328,11 @@ object {
 * Helper
 *
 **/
-.clear::before, .clear::after {
+.clear::before, footer::before, .clear::after, footer::after {
   content: "";
   display: table;
 }
-.clear::after {
+.clear::after, footer::after {
   clear: both;
 }
 

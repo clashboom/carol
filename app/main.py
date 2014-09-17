@@ -91,14 +91,14 @@ class Handler(webapp2.RequestHandler):
         return template.render(params)
 
     def render(self, template, *a, **params):
-        locale = self.session.get('locale')
-        if not locale:
-            locale = detectLocale(self.request.headers.get('accept_language'))
-            self.session['locale'] = locale
-        elif locale != 'no':
-            template = template[:-5] + '_' + 'en' + '.html'
+        # locale = self.session.get('locale')
+        # if not locale:
+        #     locale = detectLocale(self.request.headers.get('accept_language'))
+        #     self.session['locale'] = locale
+        # elif locale != 'no':
+        #     template = template[:-5] + '_' + 'en' + '.html'
         self.write(self.render_str(template,
-                                   locale=locale,
+                                   # locale=locale,
                                    *a, **params))
 
     def dispatch(self):
