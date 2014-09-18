@@ -3,7 +3,7 @@
 * Utils
 *
 **/
-@import url(http://fonts.googleapis.com/css?family=Bree+Serif|Open+Sans&subset=latin,latin-ext);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700italic,400,800&subset=latin,latin-ext);
 
 
 /*==========  VARIABLES  ==========*/
@@ -28,7 +28,6 @@
   $foolsGold: #c6b712;
   $dreamRelief: #1577b7;
   $skysLight: #10b1e2;
-  $dedede: #dedede;
   
   $colorBlue: #3372df !default;
   $colorBlueSecondary: lighten($colorBlue, 30%) !default;
@@ -65,7 +64,7 @@
 
   // Defining font family
   $fontDefault: 'Open Sans', sans-serif !default;
-  $fontHighlight:  'Bree Serif', serif !default;
+  $fontHighlight:  'Open Sans', sans-serif !default;
   $fontIcon: "icons" !default;
 
   // Defining font sizes
@@ -198,7 +197,7 @@
 
   @mixin rule--medium {
     font-size: $fontMedium;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.3000em; /* 26px */
     padding-top: 1.3000em;
     padding-bottom: 0;
@@ -207,7 +206,7 @@
   @mixin rule--large {
     font-family: $fontHighlight;
     font-size: $fontLarge;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.0000em; /* 26px */
     padding-top: 1.0000em;
     padding-bottom: 0;
@@ -216,7 +215,7 @@
   @mixin rule--xlarge {
     font-family: $fontHighlight;
     font-size: $fontXLarge;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.2381em; /* 52px */
     padding-top: 0.6190em;
     padding-bottom: 0;
@@ -225,7 +224,7 @@
   @mixin rule--xxlarge {
     font-family: $fontHighlight;
     font-size: $fontXXLarge;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.1471em; /* 78px */
     padding-top: 0.3824em;
     padding-bottom: 0;
@@ -234,7 +233,7 @@
   @mixin rule--huge {
     font-family: $fontHighlight;
     font-size: $fontHuge;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.19em; /* 130px */
     padding-top: 0.2364em;
     padding-bottom: 0;

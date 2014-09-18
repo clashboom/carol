@@ -5,11 +5,10 @@
 **/
 
 .featured-spotlight {
-  background: #48555e;
+  background: #4c5e60;
   color: #ffffff;
   overflow: hidden;
   padding-bottom: $lineHeight*3 - 1;
-  /* margin-top: $lineHeight*2; */
 
   p {
     padding-bottom: $lineHeight;
@@ -22,6 +21,11 @@
       color: #ffffff;
     }
   }
+
+  @include wide {
+    padding-top: $lineHeight*2;
+  }
+
 }
 
 .featured-spotlight__container {

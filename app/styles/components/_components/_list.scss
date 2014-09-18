@@ -183,6 +183,13 @@ ol.list-links {
   p {
     margin-bottom: $lineHeight;
   }
+
+  ul
+  ol {
+    list-style: none;
+  }
+
+  background: rgba(255,255,255,0.6);
 }
 
 .featured-list__img-wrapper {

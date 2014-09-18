@@ -8,7 +8,7 @@
 * Utils
 *
 **/
-@import url(http://fonts.googleapis.com/css?family=Bree+Serif|Open+Sans&subset=latin,latin-ext);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700italic,400,800&subset=latin,latin-ext);
 /*==========  VARIABLES  ==========*/
 /*==========  FUNCTIONS  ==========*/
 /*==========  MIXINS  ==========*/
@@ -399,6 +399,14 @@ html, body, button {
   font-smoothing: antialiased;
 }
 
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
@@ -406,6 +414,10 @@ body {
   /* 26px */
   font-weight: 300;
   color: #404040;
+  position: relative;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  min-height: 100%;
   position: relative;
 }
 body::after {
@@ -427,6 +439,117 @@ body.debug::after {
   pointer-events: none;
 }
 
+body.open {
+  overflow: hidden;
+}
+
+body > header {
+  text-align: justify;
+  background: #2c3e50;
+  color: #fff;
+}
+
+body > header::after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+}
+
+.logo {
+  font-size: 2em;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+}
+.logo a {
+  color: #fff;
+  text-decoration: none;
+}
+
+header > div,
+header > div::before,
+header nav,
+header > div h1 {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+}
+
+nav {
+  color: #fff;
+}
+
+nav a {
+  text-decoration: none;
+  color: inherit;
+}
+nav a:visited {
+  color: inherit;
+}
+
+body > header > div {
+  height: 100%;
+}
+
+body > header > div::before {
+  content: '';
+  height: 100%;
+}
+
+body > header > div h1 {
+  padding: 0;
+  font-size: 3em;
+  font-style: italic;
+}
+
+body > header nav a {
+  white-space: nowrap;
+  display: inline-block;
+  line-height: 2.5em;
+}
+
+body > header nav a:last-child {
+  padding-right: 0;
+}
+
+/** Smaller Screens - mobile devices **/
+@media screen and (max-width: 800px) {
+  body > header {
+    height: auto;
+  }
+
+  body > header > div,
+  body > header > div h1,
+  body > header nav {
+    height: auto;
+    width: auto;
+    display: block;
+    text-align: center;
+  }
+
+  header nav a {
+    padding: 0 0.6em;
+  }
+}
+/** Larger Screens - desktops and tablets **/
+@media all and (min-width: 800px) {
+  body > header {
+    height: 5em;
+    padding: 0 15%;
+  }
+  body > header nav a {
+    padding: 0 0.6em;
+  }
+
+  .app-bar {
+    position: relative;
+  }
+
+  .app-bar.open,
+  .app-bar.open ~ main {
+    -webkit-transform: translate(0px, 0);
+    transform: translate(0px, 0);
+  }
+}
 pre {
   background: #f0f0f0;
   padding: 13px;
@@ -751,9 +874,9 @@ pre {
 }
 
 .highlight-module__title {
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 68px;
-  font-weight: 300;
+  font-weight: 800;
   line-height: 1.1471em;
   /* 78px */
   padding-top: 0.3824em;
@@ -762,9 +885,9 @@ pre {
 }
 @media only screen and (min-width: 800px) {
   .highlight-module__title {
-    font-family: "Bree Serif", serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 110px;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.19em;
     /* 130px */
     padding-top: 0.2364em;
@@ -773,9 +896,9 @@ pre {
 }
 @media only screen and (min-width: 800px) {
   .highlight-module__title {
-    font-family: "Bree Serif", serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 42px;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.2381em;
     /* 52px */
     padding-top: 0.6190em;
@@ -784,9 +907,9 @@ pre {
 }
 @media only screen and (min-width: 800px) and (min-width: 800px) {
   .highlight-module__title {
-    font-family: "Bree Serif", serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 68px;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.1471em;
     /* 78px */
     padding-top: 0.3824em;
@@ -900,7 +1023,7 @@ pre {
 }
 .highlight-module--inline .highlight-module__title {
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 800;
   line-height: 1.3000em;
   /* 26px */
   padding-top: 1.3000em;
@@ -908,9 +1031,9 @@ pre {
 }
 @media only screen and (min-width: 800px) {
   .highlight-module--inline .highlight-module__title {
-    font-family: "Bree Serif", serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 26px;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.0000em;
     /* 26px */
     padding-top: 1.0000em;
@@ -1238,12 +1361,12 @@ div.highlight > pre > code .il, code .highlight .il {
 
 .editorial-header__excerpt {
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 800;
   line-height: 1.3000em;
   /* 26px */
   padding-top: 1.3000em;
   padding-bottom: 0;
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .editorial-header .tag {
@@ -1251,9 +1374,9 @@ div.highlight > pre > code .il, code .highlight .il {
 }
 
 .editorial-header__subtitle {
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 42px;
-  font-weight: 300;
+  font-weight: 800;
   line-height: 1.2381em;
   /* 52px */
   padding-top: 0.6190em;
@@ -1263,9 +1386,9 @@ div.highlight > pre > code .il, code .highlight .il {
 }
 @media only screen and (min-width: 800px) {
   .editorial-header__subtitle {
-    font-family: "Bree Serif", serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 68px;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.1471em;
     /* 78px */
     padding-top: 0.3824em;
@@ -1292,7 +1415,7 @@ div.highlight > pre > code .il, code .highlight .il {
 }
 
 .editorial-header__toc-title {
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   border-bottom: 1px solid #e0e0e0;
   margin-bottom: 13px;
   padding-bottom: 13px !important;
@@ -1343,9 +1466,9 @@ div.highlight > pre > code .il, code .highlight .il {
 }
 
 .related-guides__title {
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 26px;
-  font-weight: 300;
+  font-weight: 800;
   line-height: 1.0000em;
   /* 26px */
   padding-top: 1.0000em;
@@ -1354,9 +1477,9 @@ div.highlight > pre > code .il, code .highlight .il {
 }
 @media only screen and (min-width: 800px) {
   .related-guides__title {
-    font-family: "Bree Serif", serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 42px;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.2381em;
     /* 52px */
     padding-top: 0.6190em;
@@ -1389,12 +1512,12 @@ div.highlight > pre > code .il, code .highlight .il {
 
 .in-this-guide__title {
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 800;
   line-height: 1.3000em;
   /* 26px */
   padding-top: 1.3000em;
   padding-bottom: 0;
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   margin-bottom: 26px;
 }
 
@@ -1411,7 +1534,7 @@ div.highlight > pre > code .il, code .highlight .il {
 
 .articles-count {
   color: #3372df;
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
 }
 
@@ -1425,9 +1548,15 @@ div.highlight > pre > code .il, code .highlight .il {
 }
 
 .guides-section {
-  background: #f0f0f0;
+  background: #f0f0f0 url(/images/sadzive.jpg) no-repeat center center fixed;
+  background-size: cover;
   text-align: center;
   padding: 26px 0 104px;
+}
+
+.guides-section > header p,
+.guides-section > header h2 {
+  color: #fff;
 }
 
 /**
@@ -1464,7 +1593,8 @@ div.highlight > pre > code .il, code .highlight .il {
 *
 **/
 .featured-section {
-  background: #f0f0f0;
+  background: #f0f0f0 url(/images/turisms.jpg) no-repeat center center fixed;
+  background-size: cover;
 }
 
 /**
@@ -1473,11 +1603,10 @@ div.highlight > pre > code .il, code .highlight .il {
 *
 **/
 .featured-spotlight {
-  background: #48555e;
+  background: #4c5e60;
   color: #ffffff;
   overflow: hidden;
   padding-bottom: 77px;
-  /* margin-top: $lineHeight*2; */
 }
 .featured-spotlight p {
   padding-bottom: 26px;
@@ -1487,6 +1616,11 @@ div.highlight > pre > code .il, code .highlight .il {
 }
 .featured-spotlight .cta--primary:hover {
   color: #ffffff;
+}
+@media only screen and (min-width: 800px) {
+  .featured-spotlight {
+    padding-top: 52px;
+  }
 }
 
 .featured-spotlight__container {
@@ -1532,7 +1666,7 @@ div.highlight > pre > code .il, code .highlight .il {
 **/
 .quote__content {
   position: relative;
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
   line-height: 1.6250em;
   /* 26px */
@@ -1544,7 +1678,7 @@ div.highlight > pre > code .il, code .highlight .il {
 @media only screen and (min-width: 800px) {
   .quote__content {
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.3000em;
     /* 26px */
     padding-top: 1.3000em;
@@ -1568,7 +1702,7 @@ div.highlight > pre > code .il, code .highlight .il {
   content: open-quote;
   display: block;
   position: absolute;
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   color: #f0f0f0;
   top: 90px;
@@ -1610,7 +1744,7 @@ div.highlight > pre > code .il, code .highlight .il {
 .article-nav-link::before {
   position: absolute;
   top: 21px;
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 20px;
   font-weight: 400;
 }
@@ -1655,7 +1789,7 @@ div.highlight > pre > code .il, code .highlight .il {
 
 .article-nav-count {
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 800;
   line-height: 1.3000em;
   /* 26px */
   padding-top: 1.3000em;
@@ -1664,9 +1798,9 @@ div.highlight > pre > code .il, code .highlight .il {
 }
 @media only screen and (min-width: 800px) {
   .article-nav-count {
-    font-family: "Bree Serif", serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 26px;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.0000em;
     /* 26px */
     padding-top: 1.0000em;
@@ -1750,7 +1884,7 @@ div.highlight > pre > code .il, code .highlight .il {
   /* 26px */
   padding-top: 1.6250em;
   padding-bottom: 0;
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   padding-bottom: 13px;
   margin-bottom: 12px;
   border-bottom: 1px solid #e0e0e0;
@@ -1758,7 +1892,7 @@ div.highlight > pre > code .il, code .highlight .il {
 @media only screen and (min-width: 800px) {
   .toc__title {
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.3000em;
     /* 26px */
     padding-top: 1.3000em;
@@ -1816,7 +1950,7 @@ div.highlight > pre > code .il, code .highlight .il {
 @media only screen and (min-width: 620px) {
   .next-lessons::before {
     content: attr(data-current-lesson);
-    font-family: "Bree Serif", serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 1;
@@ -2115,7 +2249,7 @@ h4 {
   .medium,
   h4 {
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.3000em;
     /* 26px */
     padding-top: 1.3000em;
@@ -2126,7 +2260,7 @@ h4 {
 .large,
 h3 {
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 800;
   line-height: 1.3000em;
   /* 26px */
   padding-top: 1.3000em;
@@ -2135,9 +2269,9 @@ h3 {
 @media only screen and (min-width: 800px) {
   .large,
   h3 {
-    font-family: "Bree Serif", serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 26px;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.0000em;
     /* 26px */
     padding-top: 1.0000em;
@@ -2147,9 +2281,9 @@ h3 {
 
 .xlarge,
 h2 {
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 26px;
-  font-weight: 300;
+  font-weight: 800;
   line-height: 1.0000em;
   /* 26px */
   padding-top: 1.0000em;
@@ -2158,9 +2292,9 @@ h2 {
 @media only screen and (min-width: 800px) {
   .xlarge,
   h2 {
-    font-family: "Bree Serif", serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 42px;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.2381em;
     /* 52px */
     padding-top: 0.6190em;
@@ -2170,9 +2304,9 @@ h2 {
 
 .xxlarge,
 h1 {
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 42px;
-  font-weight: 300;
+  font-weight: 800;
   line-height: 1.2381em;
   /* 52px */
   padding-top: 0.6190em;
@@ -2181,9 +2315,9 @@ h1 {
 @media only screen and (min-width: 800px) {
   .xxlarge,
   h1 {
-    font-family: "Bree Serif", serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 68px;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.1471em;
     /* 78px */
     padding-top: 0.3824em;
@@ -2192,9 +2326,9 @@ h1 {
 }
 
 .huge {
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 68px;
-  font-weight: 300;
+  font-weight: 800;
   line-height: 1.1471em;
   /* 78px */
   padding-top: 0.3824em;
@@ -2202,9 +2336,9 @@ h1 {
 }
 @media only screen and (min-width: 800px) {
   .huge {
-    font-family: "Bree Serif", serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 110px;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.19em;
     /* 130px */
     padding-top: 0.2364em;
@@ -2228,7 +2362,7 @@ li > p {
   margin-top: 13px;
   min-height: 26px;
   text-align: center;
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 600;
   text-decoration: none;
   outline: 0;
@@ -2343,7 +2477,7 @@ ul.list-links a::before {
 }
 ul.list-links.list-links--primary a {
   font-weight: 400;
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   line-height: 1;
   text-decoration: none;
 }
@@ -2458,6 +2592,7 @@ ol.list-links.list-links--secondary a::before {
   padding-top: 26px;
   padding-bottom: 26px;
   margin-top: 26px;
+  background: rgba(255, 255, 255, 0.6);
 }
 @media only screen and (min-width: 620px) {
   .featured-list__item {
@@ -2470,6 +2605,10 @@ ol.list-links.list-links--secondary a::before {
 }
 .featured-list__item p {
   margin-bottom: 26px;
+}
+.featured-list__item ul
+ol {
+  list-style: none;
 }
 
 .featured-list__img-wrapper {
@@ -2514,7 +2653,7 @@ ol.list-links.list-links--secondary a::before {
 
 /*==========  RELATED GUIDES LIST  ==========*/
 .related-guides-list {
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   padding-top: 0;
   padding-left: 0;
 }
@@ -2623,7 +2762,7 @@ a:hover {
 }
 
 .cta--primary {
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   color: #3372df;
   font-weight: 400;
   display: inline-block;
@@ -2643,7 +2782,7 @@ a:hover {
 }
 
 .cta--secondary {
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   color: #3372df;
   font-weight: 400;
   display: inline-block;
@@ -2669,7 +2808,7 @@ table thead {
 table th {
   text-align: center;
   display: none;
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
   line-height: 1.6250em;
   /* 26px */
@@ -2679,7 +2818,7 @@ table th {
 @media only screen and (min-width: 800px) {
   table th {
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 800;
     line-height: 1.3000em;
     /* 26px */
     padding-top: 1.3000em;
@@ -2711,7 +2850,7 @@ table td::before {
   bottom: 0;
   width: 100px;
   max-height: 100%;
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
   font-weight: 400;
   padding-left: 13px;
@@ -2977,8 +3116,14 @@ object {
 .guides-list__item h3 {
   margin: 0 32px;
 }
+.guides-list__item h3 a {
+  text-decoration: none;
+}
 .guides-list__item p {
   margin: 26px 32px 0;
+}
+.guides-list__item ul, .guides-list__item li {
+  text-align: left;
 }
 @media only screen and (min-width: 620px) {
   .guides-list__item .primary-content {
@@ -3048,7 +3193,7 @@ object {
 }
 .icon-circle span,
 .icon-circle--large span {
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 26px;
   font-weight: 700;
 }
@@ -3491,7 +3636,7 @@ object {
   /* 26px */
   padding-top: 2.0000em;
   padding-bottom: 0;
-  font-family: "Bree Serif", serif;
+  font-family: "Open Sans", sans-serif;
   text-transform: uppercase;
   font-weight: 700;
   display: inline-block;
