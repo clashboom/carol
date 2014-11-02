@@ -407,8 +407,8 @@ body {
   padding: 0;
 }
 
-main,
-.contact {
+main {
+  background: #f0f0f0 url(/images/subtle_white_feathers.png) repeat top left;
   min-height: 48em;
 }
 
@@ -531,7 +531,7 @@ nav a {
   text-decoration: none;
   color: inherit;
 }
-nav a:visited {
+nav a:hover, nav a:visited {
   color: inherit;
 }
 
@@ -578,10 +578,6 @@ body > header nav a:last-child {
     margin: 5px 10px;
     font-size: 1.00em;
     line-height: 2.5em;
-  }
-
-  .contact {
-    background: #f0f0f0 url(/images/subtle_white_feathers.png) no-repeat center center fixed;
   }
 }
 /** Larger Screens - desktops and tablets **/

@@ -21,8 +21,9 @@ body {
   padding: 0;
 }
 
-main,
-.contact {
+main
+{
+  background: $colorGrayBackground url(/images/subtle_white_feathers.png) repeat top left;
   min-height: 48em;
 }
 
@@ -142,6 +143,7 @@ nav {
 nav a,{
   text-decoration: none;
   color: inherit;
+  &:hover,
   &:visited {
     color: inherit;
   }
@@ -195,7 +197,6 @@ body > header nav a:last-child {
     }
 
     .contact {
-      background: $colorGrayBackground url(/images/subtle_white_feathers.png) no-repeat center center fixed;
     }
 }
 
