@@ -2,19 +2,20 @@
 # -*- coding:utf-8 -*-
 
 import jinja2
+import logging
 import os
 import webapp2
 
 from functools import wraps
 
 from google.appengine.api import images
-# from google.appengine.api import mail
+from google.appengine.api import mail
 from google.appengine.api import memcache
 # from google.appengine.api import urlfetch
 # from google.appengine.ext import ndb
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
-# from google.appengine.runtime import apiproxy_errors
+from google.appengine.runtime import apiproxy_errors
 
 from webapp2_extras import sessions
 from webapp2_extras import sessions_memcache
@@ -91,14 +92,7 @@ class Handler(webapp2.RequestHandler):
         return template.render(params)
 
     def render(self, template, *a, **params):
-        # locale = self.session.get('locale')
-        # if not locale:
-        #     locale = detectLocale(self.request.headers.get('accept_language'))
-        #     self.session['locale'] = locale
-        # elif locale != 'no':
-        #     template = template[:-5] + '_' + 'en' + '.html'
         self.write(self.render_str(template,
-                                   # locale=locale,
                                    *a, **params))
 
     def dispatch(self):
@@ -113,7 +107,6 @@ class Handler(webapp2.RequestHandler):
         return self.session_store.get_session(name='navette_session',
                                               factory=sessions_memcache.
                                               MemcacheSessionFactory)
-
 
 class ChangeLocale(Handler):
     def get(self, locale):
@@ -146,31 +139,9 @@ class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
         self.redirect('/serve/%s' % blob_info.key())
 
 
-# class ThumbnailHandler(blobstore_handlers.BlobstoreDownloadHandler):
-#     def get(self, resource):
-#         resource = str(urllib.unquote(resource))
-#         blob_info = blobstore.BlobInfo.get(resource)
-#
-#         size = self.request.get('size')
-#         size = int(size) if size else 100
-#
-#         if blob_info:
-#             img = images.Image(blob_key=resource)
-#             img.resize(width=size, height=size)
-#             thumbnail = img.execute_transforms(output_encoding=images.JPG)
-#
-#             self.response.headers['Content-Type'] = 'image/jpg'
-#             self.response.out.write(thumbnail)
-#             return
-#
-#         # Either the blobkey was not provided or there was no value with that
-#         # ID in the Blobstore
-#         self.error(404)
-
-
 class MainHandler(Handler):
     def get(self):
-        self.render('home.html')
+        self.render('darbs.html')
 
 
 class ServicesHandler(Handler):
@@ -193,10 +164,55 @@ class AboutHandler(Handler):
         self.render("par.html")
 
 
+class TourHandler(Handler):
+    def get(self):
+        self.render("brauciens.html")
+
+
+class MailHandler(Handler):
+    @rate_limit(seconds_per_request=15)
+    def post(self):
+        user_info = self.request.get('contact')
+        message = self.request.get('msg')
+        if user_info:
+            message += " - %s" % user_info
+        from_addr = "info@saldusgaisma.lv"
+        to_addr = "nejeega@gmail.com"
+
+        try:
+            msg = mail.EmailMessage()
+            msg.sender = from_addr
+            msg.to = to_addr
+            msg.subject = "No maajas lapas"
+            msg.html = message
+            msg.send()
+            self.redirect(self.request.referer)
+        except apiproxy_errors.OverQuotaError, message:
+            logging.error(message)
+
+
+class GetsbijHandler(Handler):
+    def get(self):
+        self.render("getsbijs.html")
+
+
+class ZRLHandler(Handler):
+    def get(self):
+        self.render("zrl.html")
+
+
+class SPAHandler(Handler):
+    def get(self):
+        self.render("spa.html")
+
+
 app = webapp2.WSGIApplication([
     ('/pakalpojumi*', ServicesHandler),
     ('/atputa.*', ToursHandler),
     ('/kontakti*', ContactsHandler),
-    ('/par*', AboutHandler),
+    ('/mail', MailHandler),
+    ('/atputa/lielais-getsbijs', GetsbijHandler),
+    ('/atputa/ziema-rozu-laukuma', ZRLHandler),
+    ('/atputa/spa', SPAHandler),
     ('/.*', MainHandler)
 ], config=config, debug=True)

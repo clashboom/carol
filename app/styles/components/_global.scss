@@ -21,6 +21,10 @@ body {
   padding: 0;
 }
 
+main,
+.contact {
+  min-height: 48em;
+}
 
 body {
   font-family: $fontDefault;
@@ -44,7 +48,7 @@ body.open {
 
 body > header {
     text-align: justify;
-    background: #2c3e50;
+    background: #222;
     color: #fff;
 }
 
@@ -57,10 +61,9 @@ body > header::after {
 .logo {
   font-size: 2em;
   font-family: $fontDefault;
-  font-weight: 700;
   a {
-    color: #fff;
-    text-decoration: none;
+  color: #ebff00;
+  text-decoration: none;
   }
 }
 
@@ -74,7 +77,66 @@ header > div h1 {
 }
 
 nav {
-  color: #fff;
+  color: #f7f7f7;
+
+  a {
+    position: relative;
+    display: inline-block;
+    outline: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    text-shadow: 0 0 1px rgba(255,255,255,0.3);
+    
+    /* Effect 1: Brackets */
+    &::before,
+    &::after {
+      display: inline-block;
+      opacity: 0;
+      -webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+      -moz-transition: -moz-transform 0.3s, opacity 0.2s;
+      transition: transform 0.3s, opacity 0.2s;
+    }
+
+    &::before {
+      margin-right: 10px;
+      content: '[';
+      -webkit-transform: translateX(20px);
+      -moz-transform: translateX(20px);
+      transform: translateX(20px);
+    }
+
+    &::after {
+      margin-left: 10px;
+      content: ']';
+      -webkit-transform: translateX(-20px);
+      -moz-transform: translateX(-20px);
+      transform: translateX(-20px);
+    }
+
+    &:hover::before,
+    &:hover::after,
+    &:focus::before,
+    &:focus::after {
+      opacity: 1;
+      -webkit-transform: translateX(0px);
+      -moz-transform: translateX(0px);
+      transform: translateX(0px);
+    }text-decoration: underline;
+  
+  }
+  .active {
+      color: #ebff00;
+    &:visited {
+      color: #ebff00;
+    }
+  }
+}
+
+
+.darkbg {
+  background: #444;
 }
 
 nav a,{
@@ -103,7 +165,6 @@ body > header > div h1 {
 body > header nav a {
     white-space: nowrap;
     display: inline-block;
-    line-height: 2.5em;
 }
 
 body > header nav a:last-child {
@@ -128,9 +189,14 @@ body > header nav a:last-child {
     }
 
     header nav a {
-      padding: 0 0.6em;
+      margin: 5px 10px;
+      font-size: 1.00em;
+      line-height: 2.5em;
     }
 
+    .contact {
+      background: $colorGrayBackground url(/images/subtle_white_feathers.png) no-repeat center center fixed;
+    }
 }
 
 /** Larger Screens - desktops and tablets **/
@@ -139,7 +205,9 @@ body > header nav a:last-child {
     height: 5em;
     padding: 0 15%;
     nav a {
-      padding: 0 0.6em;
+      font-size: 1.25em;
+      line-height: 2.5em;
+      margin: 15px 15px;
     }
   }
 
@@ -159,7 +227,10 @@ pre {
   padding: 13px;
 }
 
+
 .main-container {
+  padding-top: 2em;
+  padding-bottom: 3em;
   @include container(true);
 }
 
@@ -188,3 +259,4 @@ pre {
     }
   }
 }
+

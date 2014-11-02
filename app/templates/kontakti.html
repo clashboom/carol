@@ -1,17 +1,64 @@
 {% extends 'base.html' %}
+{% set active_page = 'kontakti' %}
+
 {% block main %}
 
-<div class="main-container">
+<div class="contact">
+  <div class="container">
+  <div class="contact-info">
+    <h2>Kontaktinformācija</h2>
+    <div class="g-wide--half">
+      <span> Sīkākai informācijai vai pakalpojumu pieteikšanai </span>
+      <br/>
+      <a class="tap-link large" href="tel:+37126548867">
+        +371 26548867
+      </a>
+    </div>
 
-  SIA „Carolina LV”
-  Reģ. Nr. 48503015892
-  A/S Swedbank, kods:HABALV22
-  konts: LV40HABA0551026401242
+    <div class="g-wide--half g--last">
+      <span>Vai rakstiet uz e-pastu</span>
+      <br />
+      <a class="tap-link large" href="mailto:info@carolina.lv">
+        info@carolina.lv
+      </a>
+    </div>
+  </div>
 
-  Pakalpojumu pieteikšana: pa tālruni 26548867
-  vai e-pastu carolinalv@inbox.lv
-  birojs: Skrundas iela 31a – 4. kab., Saldus, LV-3801
-  (ieeja no sētas, iepriekš sazvanīties)
+  <div class="rekviziti">
+    <div class="g-wide--2">
+      <h4>Rekvizīti</h4>
+      <ul>
+        <li>SIA „Carolina LV”</li>
+        <li>
+          Skrundas iela 31a (4. kabinets)
+        </li>
+        <li>Saldus, Saldus nov., LV-3801</li>
+        <li>Reģ.Nr. 48503015892</li>
+        <br />
+        <li>AS SEB banka</li>
+        <li>UNLALV2X</li>
+        <li>LV21UNLA0050020545946</li>
+      </ul>
+    </div>
+
+    <div class="gmap g-wide--2 g-wide--last">
+      <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&amp;zoom=13&amp;size=400x250&amp;maptype=roadmap&amp;markers=color:blue%7Clabel:S%7C40.702147,-74.015794&amp;markers=color:green%7Clabel:G%7C40.711614,-74.012318&amp;markers=color:red%7Clabel:C%7C40.718217,-73.998284" alt="Points of Interest in Lower Manhattan">
+
+    </div>
+  </div>
+  </div>
+
+  <!-- <div class="contact&#45;form g&#45;wide&#45;&#45;full"> -->
+  <!--   <h2>Nosūti ziņu</h2> -->
+  <!--   <span class="subtitle">Nosūti mums ziņu un atbildēsim cik ātri iespējams</span> -->
+  <!--   <form action="/mail" method="post"> -->
+  <!--     <label for="contact">Kontaktinformācija</label> -->
+  <!--     <input type="text" name="contact" placeholder="Jūsu kontaktinformācija" required/> -->
+  <!--     <label for="msg">Ziņa</label> -->
+  <!--     <textarea name="msg" rows="8" cols="40" placeholder="Jūsu ziņa" required></textarea> -->
+  <!--     <input type="submit" name="submit" class="button" value="Nosūtīt" /> -->
+  <!--   </form> -->
+  <!-- </div> -->
 
 </div>
 

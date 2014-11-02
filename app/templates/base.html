@@ -35,12 +35,21 @@
     <header class="">
         <div class="">
           <h1 class="logo"><a href="/">Carolina</a></h1>
-        </div>
-        <nav class="">
-          <a href="/atputa">Atpūtas braucieni</a>
-          <a href="/pakalpojumi">Sadzīves pakalpojumi</a>
-          <a href="/kontakti">Kontakti</a>
-        </nav>
+        </div>                                                                   
+        {% set navigation_bar = [
+            ('/atputa', 'atputa', 'Atpūta'),
+            ('/pakalpojumi', 'pakalpojumi', 'Pakalpojumi'),
+            ('/kontakti', 'kontakti', 'Kontakti')
+            ] -%}
+
+            {% set active_page = active_page|default('none') -%}
+            <nav>
+              {% for href, id, caption in navigation_bar %}
+                <a {% if id == active_page %} class="active"{% endif
+                %} href="{{ ('/' + locale if locale else '') +  href|e }}"><span data-hover="{{ caption | e }}">{{ caption|e }}</span></a>
+              {% endfor %}
+            </nav>
+
     </header>
 
 
@@ -51,9 +60,9 @@
 
     <footer>
       <div class="container-medium">
-      Zvaniet: <a href="tel:+37126548867">26548867</a>
-      &amp;
-      Rakstat: <a href="mailto:info@carolina.lv">info@carolina.lv</a>
+        Carolina &copy; 2014  &#124;
+        Zvaniet: <a href="tel:+37126548867">(+371) 26548867</a>
+        Rakstiet: <a href="mailto:info@carolina.lv">info@carolina.lv</a>
       </div>
     </footer>
 

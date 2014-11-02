@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% set active_page = 'pakalpojumi' %}
 {% block main %}
 
 <div class="guides-section">
@@ -9,10 +10,11 @@
   <ul class="guides-list container-medium">
     <li class="guides-list__item g--half theme--multi-device-layouts ">
       <div class="primary-content">
-        <h3 class="xlarge"><a href="#ignore-click" title="Go to Multi-Device Layouts" class="themed">Uzkopšanas darbi</a></h3>
+        <h3 class="xlarge"><span class="themed">Uzkopšanas darbi</span></h3>
         <ul>
-          <li>Māju, dzīvokļu un citu telpu uzkopšana</li>
           <li>Logu mazgāšana</li>
+          <li>Telpu ikdienas uzkopšana</li>
+          <li>Telpu uzkopšana pēc remonta</li>
           <li>Paklāju un mīksto grīdas segumu tīrīšana</li>
         </ul>
       </div>
@@ -21,10 +23,12 @@
     </li>
     <li class="guides-list__item g--half theme--performance g--last">
       <div class="primary-content">
-        <h3 class="xlarge"><a href="#ignore-click" title="Go to Optimizing Performance" class="themed">Sadzīves pakalpojumi</a></h3>
+        <h3 class="xlarge"><span class="themed">Saimnieciskie darbi</span></h3>
         <ul>
           <li>Mēbeļu pārvešana dzīves vietu mainot</li>
-          <li>Dažādi saimniecības darbi - pēc vienošanās un mūsu iespēju robežās</li>
+          <li>Zāles pļaušana</li>
+          <li>Malkas krāmēšana</li>
+          <li>Dažādi saimnieciskie darbi pēc vienošanās un iespēju robežās</li>
         </ul>
       </div>
       <div class="secondary-content">
@@ -32,11 +36,13 @@
     </li>
     <li class="guides-list__item g--half theme--user-input ">
       <div class="primary-content">
-        <h3 class="xlarge"><a href="#ignore-click" title="Go to Forms and User Input" class="themed">Pasākumu organizēšana</a></h3>
+        <h3 class="xlarge"><span class="themed">Dažādi pakalpojumi</span></h3>
         <ul>
-          <li>Teātru, koncertu, sporta spēļu u.c. pasākumu apmeklējumi</li>
-          <li>Atpūtas braucieni</li>
-          <li>Ekskursiju plānošana un organizēšana</li>
+          <li>Krūzīšu apdruka, krūzītes ar foto</li>
+          <li>Gravējumi uz pildspalvām, termosiem u.c.</li>
+          <li>Kalendāri ar Jūsu foto</li>
+          <li>Izšuvumi un dažādi reklāmu materiāli</li>
+          <li>Preču pasūtījumu veikšana</li>
         </ul>
       </div>
       <div class="secondary-content">
@@ -44,8 +50,13 @@
     </li>
     <li class="guides-list__item g--half theme--introduction-to-media g--last">
       <div class="primary-content">
-        <h3 class="xlarge"><a href="#ignore-click" title="Go to Images, Audio and Video" class="themed">Atpūtas braucieni</a></h3>
-        <p>Kad nestrādājam, tad atpūšamies! Ikviens ir laipni aicināts piedalīties mūsu atpūtas braucienos. Sīkākai informācijai skatīt atpūtas braucienu sadaļu.</p>
+        <h3 class="xlarge"><span class="themed">Pasākumu organizēšana</span></h3>
+        <ul>
+          <li>Ekskursiju maršutu izstrāde, plānošana un braucienu koordinēšana</li>
+          <li>Teātru un koncertu apmeklējumi</li>
+          <li>Sporta spēļu apmeklējumi</li>
+          <li>Palīdzība dažādu pasākumu (jubileju, svētku, tematisko vakaru) organizēšanā un koordinēšanā</li>
+        </ul>
       </div>
       <div class="secondary-content">
       </div>

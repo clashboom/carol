@@ -407,6 +407,11 @@ body {
   padding: 0;
 }
 
+main,
+.contact {
+  min-height: 48em;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
@@ -445,7 +450,7 @@ body.open {
 
 body > header {
   text-align: justify;
-  background: #2c3e50;
+  background: #222;
   color: #fff;
 }
 
@@ -458,10 +463,9 @@ body > header::after {
 .logo {
   font-size: 2em;
   font-family: "Open Sans", sans-serif;
-  font-weight: 700;
 }
 .logo a {
-  color: #fff;
+  color: #ebff00;
   text-decoration: none;
 }
 
@@ -475,7 +479,52 @@ header > div h1 {
 }
 
 nav {
-  color: #fff;
+  color: #f7f7f7;
+}
+nav a {
+  position: relative;
+  display: inline-block;
+  outline: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+  /* Effect 1: Brackets */
+  text-decoration: underline;
+}
+nav a::before, nav a::after {
+  display: inline-block;
+  opacity: 0;
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+  transition: transform 0.3s, opacity 0.2s;
+}
+nav a::before {
+  margin-right: 10px;
+  content: '[';
+  -webkit-transform: translateX(20px);
+  transform: translateX(20px);
+}
+nav a::after {
+  margin-left: 10px;
+  content: ']';
+  -webkit-transform: translateX(-20px);
+  transform: translateX(-20px);
+}
+nav a:hover::before, nav a:hover::after, nav a:focus::before, nav a:focus::after {
+  opacity: 1;
+  -webkit-transform: translateX(0px);
+  transform: translateX(0px);
+}
+nav .active {
+  color: #ebff00;
+}
+nav .active:visited {
+  color: #ebff00;
+}
+
+.darkbg {
+  background: #444;
 }
 
 nav a {
@@ -504,7 +553,6 @@ body > header > div h1 {
 body > header nav a {
   white-space: nowrap;
   display: inline-block;
-  line-height: 2.5em;
 }
 
 body > header nav a:last-child {
@@ -527,7 +575,13 @@ body > header nav a:last-child {
   }
 
   header nav a {
-    padding: 0 0.6em;
+    margin: 5px 10px;
+    font-size: 1.00em;
+    line-height: 2.5em;
+  }
+
+  .contact {
+    background: #f0f0f0 url(/images/subtle_white_feathers.png) no-repeat center center fixed;
   }
 }
 /** Larger Screens - desktops and tablets **/
@@ -537,7 +591,9 @@ body > header nav a:last-child {
     padding: 0 15%;
   }
   body > header nav a {
-    padding: 0 0.6em;
+    font-size: 1.25em;
+    line-height: 2.5em;
+    margin: 15px 15px;
   }
 
   .app-bar {
@@ -556,6 +612,8 @@ pre {
 }
 
 .main-container {
+  padding-top: 2em;
+  padding-bottom: 3em;
   box-sizing: content-box;
   position: relative;
   padding-left: 5%;
@@ -1548,7 +1606,7 @@ div.highlight > pre > code .il, code .highlight .il {
 }
 
 .guides-section {
-  background: #f0f0f0 url(/images/sadzive.jpg) no-repeat center center fixed;
+  background: #f0f0f0 url(/images/swim.jpg) no-repeat center center fixed;
   background-size: cover;
   text-align: center;
   padding: 26px 0 104px;
@@ -1602,8 +1660,20 @@ div.highlight > pre > code .il, code .highlight .il {
 * Editorial Header
 *
 **/
+.atputa_title {
+  padding: 25px 0 40px;
+  background: #f7f7f7 url(/images/subtle_white_feathers.png) repeat top left;
+}
+.atputa_title span {
+  display: block;
+}
+
+.subtle {
+  color: #666;
+}
+
 .featured-spotlight {
-  background: #4c5e60;
+  background: #222222 url(/images/cartographer.png) repeat top left;
   color: #ffffff;
   overflow: hidden;
   padding-bottom: 77px;
@@ -1992,7 +2062,8 @@ footer {
   display: block;
   height: 120px;
   line-height: 120px;
-  background: #da2e75;
+  background: #222;
+  color: #444;
 }
 footer a {
   color: inherit;
@@ -3120,7 +3191,7 @@ object {
   text-decoration: none;
 }
 .guides-list__item p {
-  margin: 26px 32px 0;
+  margin: 0 32px 0;
 }
 .guides-list__item ul, .guides-list__item li {
   text-align: left;
@@ -3468,16 +3539,71 @@ object {
   margin-top: 0;
 }
 
+.contact {
+  background: #f0f0f0 url(/images/subtle_white_feathers.png) repeat top left;
+  text-align: center;
+  padding-top: 2em;
+  padding-bottom: 3em;
+  padding: 26px 0 104px;
+}
+
+.rekviziti ul {
+  padding-left: 0;
+}
+.rekviziti ul li::before {
+  content: none;
+}
+.rekviziti h4 {
+  padding-top: 20px;
+}
+.rekviziti .gmap {
+  padding-top: 20px;
+}
+
+.tap-link {
+  line-height: 40px;
+}
+
+.g-wide .rekviziti {
+  padding-top: 40px;
+}
+
+.contact-info h2 {
+  padding-bottom: 20px;
+}
+
+form input,
+form label,
+form .button,
+form .button--primary,
+form .button--secondary,
+form .button--secondary-variation {
+  display: block;
+}
+form input,
+form textarea {
+  padding: 5px 10px;
+}
+form label {
+  padding-top: 0.5em;
+}
+
 /**
 *
 * Helper
 *
 **/
-.clear::before, footer::before, .clear::after, footer::after {
+.clear::before, footer::before, .contact::before,
+.contact-info::before,
+.rekviziti::before, .clear::after, footer::after, .contact::after,
+.contact-info::after,
+.rekviziti::after {
   content: "";
   display: table;
 }
-.clear::after, footer::after {
+.clear::after, footer::after, .contact::after,
+.contact-info::after,
+.rekviziti::after {
   clear: both;
 }
 

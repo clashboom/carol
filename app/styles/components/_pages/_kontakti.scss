@@ -1,0 +1,63 @@
+.contact {
+  background: $colorGrayBackground url(/images/subtle_white_feathers.png) repeat top left;
+  text-align: center;
+  padding-top: 2em;
+  padding-bottom: 3em;
+  padding: $lineHeight 0 $lineHeight*4;
+}
+
+.contact,
+.contact-info,
+.rekviziti {
+  @extend .clear;
+}
+
+.rekviziti {
+  ul {
+    padding-left: 0;
+
+    li::before {
+      content: none;
+    }
+  }
+  h4 {
+    padding-top: 20px;
+  }
+  .gmap {
+    padding-top: 20px;
+  }
+}
+
+.tap-link {
+  line-height: 40px;
+}
+
+
+.g-wide {
+  .rekviziti {
+    padding-top: 40px;
+  }
+}
+
+.contact-info {
+  h2 {
+    padding-bottom: 20px;
+  }
+}
+
+form {
+  input,
+  label,
+  .button {
+    display: block;
+  }
+
+  input,
+  textarea {
+    padding: 5px 10px;
+  }
+
+  label {
+    padding-top: 0.5em;
+  }
+}

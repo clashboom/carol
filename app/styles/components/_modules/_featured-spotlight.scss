@@ -4,8 +4,20 @@
 *
 **/
 
+.atputa_title {
+  padding: 25px 0 40px;
+  background: #f7f7f7 url(/images/subtle_white_feathers.png) repeat top left;
+  span {
+    display: block;
+  }
+}
+
+.subtle {
+  color: #666;
+}
+
 .featured-spotlight {
-  background: #4c5e60;
+  background: #222 url(/images/cartographer.png) repeat top left;
   color: #ffffff;
   overflow: hidden;
   padding-bottom: $lineHeight*3 - 1;
