@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% set active_page = 'kontakti' %}
+
+{% block main %}
+
+<div class="container">
+
+<form action="{{ ul_url }}" enctype="multipart/form-data" method="post" data-abide>
+
+  <label for="eventName">Pasākuma virsraksts/nosaukums:</label>
+  <input id="eventName" type="text" name="eventName" required>
+
+  <label for="startDate">Datums</label>
+  <input id="startDate" type="date" name="startDate" required>
+
+  <label for="endDate">Beigu datums (ja periods)</label>
+  <input id="endDate" type="date" name="endDate">
+
+  <label for="excerpt">Īss apraksts</label>
+  <textarea id="excerpt" name="excerpt" cols="40" rows="4" required></textarea>
+
+  <label for="description">Apraksts (pilnā garumā)</label>
+  <textarea id="description" name="description" cols="60" rows="10" required></textarea>
+
+  <label for="price">Cena (zemākā cena, ja pieejami vairāki varianti, norādīt tos aprakstā.)</label>
+  <input id="price" type="number" name="price" required>
+
+  <label for="picture">Attēls</label>
+  <input id="picture" type="file" name="picture">
+
+  <input class="button" type="submit" value="Pievienot">
+
+</form>
+
+</div>
+
+{% endblock %}

@@ -4,6 +4,7 @@
 import jinja2
 import logging
 import os
+import urllib
 import webapp2
 
 from functools import wraps
@@ -12,10 +13,10 @@ from google.appengine.api import images
 from google.appengine.api import mail
 from google.appengine.api import memcache
 # from google.appengine.api import urlfetch
-# from google.appengine.ext import ndb
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
 from google.appengine.runtime import apiproxy_errors
+from google.appengine.ext import ndb
 
 from webapp2_extras import sessions
 from webapp2_extras import sessions_memcache
@@ -108,6 +109,7 @@ class Handler(webapp2.RequestHandler):
                                               factory=sessions_memcache.
                                               MemcacheSessionFactory)
 
+
 class ChangeLocale(Handler):
     def get(self, locale):
         if locale == 'en':
@@ -117,26 +119,6 @@ class ChangeLocale(Handler):
         else:
             self.redirect(self.request.referer)
         self.redirect(self.request.referer)
-
-
-class EditProductHandler(Handler):
-    def get(self):
-        upload_url = blobstore.create_upload_url('/upload')
-        self.render('edit_product.html', upload_url=upload_url)
-
-
-class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
-    def get(self, resource):
-        image = (images.get_serving_url(resource, 32))
-        if image:
-            self.response.out.write("%s" % image)
-
-
-class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
-    def post(self):
-        upload_files = self.get_uploads('file')
-        blob_info = upload_files[0]
-        self.redirect('/serve/%s' % blob_info.key())
 
 
 class MainHandler(Handler):
@@ -191,6 +173,89 @@ class MailHandler(Handler):
             logging.error(message)
 
 
+class Event(ndb.Model):
+    eventName = ndb.TextProperty(required=True)
+    startDate = ndb.TextProperty(required=True)
+    endDate = ndb.TextProperty()
+    excerpt = ndb.TextProperty(required=True)
+    description = ndb.TextProperty(required=True)
+    price = ndb.IntegerProperty(required=True)
+    image = ndb.BlobProperty()
+
+    @staticmethod
+    def addEvent(kind, **params):
+        event = Event(**params)
+        if event:
+            event.put()
+
+
+class EventHandler(Handler, blobstore_handlers.BlobstoreUploadHandler):
+    def get(self):
+        upload_url = blobstore.create_upload_url('/atputa/pievienot')
+        self.render("pievienot.html", ul_url=str(upload_url))
+
+    def post(self):
+        en = self.request.get('eventName')
+        sd = self.request.get('startDate')
+        ed = self.request.get('endDate')
+        ex = self.request.get('excerpt')
+        de = self.request.get('description')
+        pr = int(self.request.get('price'))
+
+        params = {'eventName': en, 'startDate': sd, 'endDate': ed,
+                  'excerpt': ex, 'description': de, 'price': pr}
+
+        # Get the picture and upload it
+        upload_files = self.get_uploads('picture')
+        # Get the key from blobstore for the first element
+        if upload_files:
+            blob_info = upload_files[0]
+            img = blob_info.key()
+            params['image'] = str(img)
+
+        Event.addEvent('Event', **params)
+        # self.redirect(self.request.referer)
+        self.redirect('/serve/' + str(img))
+
+
+# Blobstore
+class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
+    def post(self):
+        # 'file' is file upload field in the form
+        upload_files = self.get_uploads('file')
+        blob_info = upload_files[0]
+        self.redirect('/serve/%s' % blob_info.key())
+
+
+class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
+    def get(self, resource):
+        resource = str(urllib.unquote(resource))
+        blob_info = blobstore.BlobInfo.get(resource)
+        self.send_blob(blob_info)
+
+
+class ThumbnailHandler(blobstore_handlers.BlobstoreDownloadHandler):
+    def get(self, resource):
+        resource = str(urllib.unquote(resource))
+        blob_info = blobstore.BlobInfo.get(resource)
+        dimensions = self.request.get('dimensions')
+        size = int(dimensions) if dimensions else 100
+
+        if blob_info:
+            img = images.Image(blob_key=resource)
+            img.resize(width=size, height=size)
+            thumbnail = img.execute_transforms(
+                output_encoding=images.JPEG)
+
+            self.response.headers['Content-Type'] = 'image/jpeg'
+            self.response.out.write(thumbnail)
+            return
+
+        # Either blob_key wasnt provided or there was no value with that ID
+        # in the Blobstore
+        self.error(404)
+
+
 class GetsbijHandler(Handler):
     def get(self):
         self.render("getsbijs.html")
@@ -207,7 +272,11 @@ class SPAHandler(Handler):
 
 
 app = webapp2.WSGIApplication([
+    ('/upload', UploadHandler),
+    ('/serve/([^/]+)?', ServeHandler),
+    ('/serve/th/([^/]+)?', ThumbnailHandler),
     ('/pakalpojumi*', ServicesHandler),
+    ('/atputa/pievienot', EventHandler),
     ('/atputa.*', ToursHandler),
     ('/kontakti*', ContactsHandler),
     ('/mail', MailHandler),
