@@ -89,7 +89,7 @@ nav {
     letter-spacing: 1px;
     font-weight: 400;
     text-shadow: 0 0 1px rgba(255,255,255,0.3);
-    
+
     /* Effect 1: Brackets */
     &::before,
     &::after {
@@ -125,7 +125,7 @@ nav {
       -moz-transform: translateX(0px);
       transform: translateX(0px);
     }text-decoration: underline;
-  
+
   }
   .active {
       color: #ebff00;

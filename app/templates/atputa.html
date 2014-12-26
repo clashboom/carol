@@ -3,98 +3,44 @@
 
 
 {% block main %}
-<div class="atputa_title">
-  <div class="container">
-  <span class="xlarge">Kad nestrādājam, atpūšamies!</span>
-  <span class="subtitle">Pievienojies atpūtas braucieniem no Saldus! Sīkākai informācijai zvaniet pa mob. tālruni 26548867 </span>
-  </div>
-</div>
 
-<section class="styleguide__feature-spotlight featured">
-  <div class="featured-spotlight">
-    <div class="container-medium">
-      <div class="featured-spotlight__container g--pull-half">
-        <div class="featured-spotlight__img">
-          <img src="/images/prezentacija.jpg" alt="">
-        </div>
-
-        <div class="container-small">
-          <h3 class="xxlarge">
-          <strong class="subsection-number">16.janvārī</strong>
-            Prezentācija</h3>
-            <p>Kuldīgas kultūras centrā Dailes teātra viesizrāde. Mēs visi esam atkarīgi no tiem, kam sniedzam pakalpojumu vai pārdodam preci. Teātris nav izņēmums! Arī te visu laiku notiek strīds starp mākslu un izklaidi. Teātris grib ēst, bet nauda pieder skatītājam! Ko darīt?! Lūk, par to arī ir šī izrāde ar visgodīgāko nosaukumu – PREZENTĀCIJA!</p>
-            <!-- <a href="/atputa/ziema&#45;rozu&#45;laukuma" class="cta&#45;&#45;primary">Vairāk...</a> -->
-          <span class="subtle">Foto: Dailes Teātris</span>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
 
 <div class="featured-section">
+
+ <div class="highlight-module  highlight-module--left   highlight-module--learning  ">
+    <div class="highlight-module__container  icon-chevron-down ">
+        <div class="highlight-module__content   g-wide--push-1 g-wide--pull-1  g-medium--push-1   ">
+          <p class="highlight-module__title xlarge">Kad nestrādājam, <span class="xxlarge">atpūšamies!</span></p>
+          <p class="highlight-module__text">Pievienojies atpūtas braucieniem no <strong>Saldus</strong>!</p>
+          Sīkākai informācijai zvaniet pa mob.tālruni<a href="tel:+37126548867"> 26548867</a>
+        </div>
+    </div>
+</div>
+
   <div class="container-medium">
 
     <ul class="featured-list">
-
-      <li class="featured-list__item clear">
-        <div class="container-small">
-          <div class="featured-list__content">
-            <strong class="subsection-number">24.janvārī (2015)</strong>
-            <h3>Saldus - Rīga - Līgatne</h3>
-            <p>Atpūtas brauciens. Apmeklēsim Latvijas televīzijas muzeju, Padomju slepeno bunkuru Līgatnē un Laimas šokolādes muzeju.</p>
-            <!-- <a href="/atputa/ziema&#45;rozu&#45;laukuma" class="cta&#45;&#45;primary">Vairāk...</a> -->
-          </div>
-        </div>
-      </li>
+    {% for event in events %}
 
       <li class="featured-list__item clear">
         <div class="container-small">
           <div class="featured-list__content g--half">
-            <strong class="subsection-number">17.-18.janvārī (2015)</strong>
-            <h3>SPA Pērnavā (Igaunija)</h3>
-            <p>Atpūta un relaksācija vienā no lielākajiem Igaunijas ārstnieciskajiem SPA centriem.</p>
+            <strong class="subsection-number">{{ event.startDate }}</strong>
+            <h3>{{ event.eventName }}</h3>
+            <p>{{ event.excerpt }}</p>
             <!-- <a href="/atputa/spa" class="cta&#45;&#45;primary">Vairāk...</a> -->
+            <a href="/atputa/{{ event.key.id() }}" class="cta--primary">Vairāk...</a>
           </div>
           <div class="featured-list__img-wrapper g--half g--last">
             <div class="featured-list__img">
-              <img src="/images/spa.jpg" alt="small image placeholder example">
+              <img src="/serve/th/{{ event.image }}?h=400" alt="{{ event.eventName }}">
             </div>
           </div>
         </div>
       </li>
-      <li class="featured-list__item clear">
-        <div class="container-small">
-          <div class="featured-list__content g--half">
-            <strong class="subsection-number">7.februārī (2015)</strong>
-            <h3>Ledus Skulptūru festivāls</h3>
-            <p>Jelgavā norisināsies 17. Starptautiskais Ledus Skulptūru festivāls, kas pulcēs vairāk kā trīsdesmit pasaulē atzītus profesionālus skulptorus no dažādām pasaules valstīm. Ledus skulptūru darbi tiks veidoti par tēmu - "Ledus pasaka" ("Ice fairy tale").</p>
-            <!-- <a href="/atputa/spa" class="cta&#45;&#45;primary">Vairāk...</a> -->
-          </div>
-          <div class="featured-list__img-wrapper g--half g--last">
-            <div class="featured-list__img">
-              <img src="/images/ice.jpg" alt="small image placeholder example">
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="featured-list__item clear">
-        <div class="container-small">
-          <div class="featured-list__content g--half">
-            <strong class="subsection-number">14.-15.martā (2015)</strong>
-            <h3>SPA Pērnavā (Igaunija)</h3>
-            <p>Atpūta un relaksācija vienā no lielākajiem Igaunijas ārstnieciskajiem SPA centriem.</p>
-            <!-- <a href="/atputa/spa" class="cta&#45;&#45;primary">Vairāk...</a> -->
-          </div>
-          <div class="featured-list__img-wrapper g--half g--last">
-            <div class="featured-list__img">
-              <img src="/images/spa.jpg" alt="small image placeholder example">
-            </div>
-          </div>
-        </div>
-      </li>
+
+    {% endfor %}
     </ul>
-
 
   </div>
 </div>

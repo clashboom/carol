@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% set active_page = 'kontakti' %}
+{% set active_page = 'atputa' %}
 
 {% block main %}
 
@@ -8,22 +8,28 @@
 <form action="{{ ul_url }}" enctype="multipart/form-data" method="post" data-abide>
 
   <label for="eventName">Pasākuma virsraksts/nosaukums:</label>
-  <input id="eventName" type="text" name="eventName" required>
+  <input id="eventName" type="text" name="eventName" placeholder="Atpūta Liepājā" required>
 
-  <label for="startDate">Datums</label>
-  <input id="startDate" type="date" name="startDate" required>
+  <label for="location">Norises vieta:</label>
+  <input id="location" type="text" name="location" placeholder="Liepāja" required>
 
-  <label for="endDate">Beigu datums (ja periods)</label>
-  <input id="endDate" type="date" name="endDate">
+  <label for="startDate">Datums (nominatīvā)</label>
+  <input id="startDate" type="text" name="startDate" placeholder="12.janvāris" required>
+
+  <label for="endDate">Beigu datums (ja ilgāk par 1 dienu, ja ne, tad atstāj neaizpildītu)</label>
+  <input id="endDate" type="text" name="endDate" placeholder="17.janvāris">
 
   <label for="excerpt">Īss apraksts</label>
-  <textarea id="excerpt" name="excerpt" cols="40" rows="4" required></textarea>
+  <textarea id="excerpt" name="excerpt" cols="40" rows="4" placeholder="Īss apraksts, kas uzrādīsies atpūtas sadaļā" required></textarea>
 
   <label for="description">Apraksts (pilnā garumā)</label>
-  <textarea id="description" name="description" cols="60" rows="10" required></textarea>
+  <textarea id="description" name="description" cols="60" rows="10" placeholder="Garāks apraksts, kas uzrādīsies individuālā pasākuma lapā." required></textarea>
 
-  <label for="price">Cena (zemākā cena, ja pieejami vairāki varianti, norādīt tos aprakstā.)</label>
+  <label for="price">Cena (zemākā cena, ja pieejami vairāki varianti, norādīt tos zemāk)</label>
   <input id="price" type="number" name="price" required>
+
+  <label for="multipriced">Cenu informācija, ja nav vairāki cenu varianti, tad neaizpilda.</label>
+  <textarea id="multipriced" cols="40" rows="3" name="multipriced" placeholder="Pesionāriem un studentiem 20 EUR, pārējiem 25 EUR"></textarea>
 
   <label for="picture">Attēls</label>
   <input id="picture" type="file" name="picture">

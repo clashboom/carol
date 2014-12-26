@@ -42,6 +42,12 @@
   @include wide {
     min-height: $lineHeight*8;
   }
+
+  @include small-only {
+    padding-bottom: $lineHeight*2;
+  }
+
+
 }
 
 .highlight-module__title {

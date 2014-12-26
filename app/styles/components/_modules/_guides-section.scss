@@ -3,6 +3,9 @@
   background-size: cover;
   text-align: center;
   padding: $lineHeight 0 $lineHeight*4;
+  @include small-only {
+    padding: $lineHeight 0;
+  }
 }
 
 .guides-section > header p,

@@ -159,8 +159,12 @@ ol.list-links {
 /*==========  FEATURED LIST  ==========*/
 
 .featured-list {
-  padding-top: $lineHeight * 3;
-  padding-bottom: $lineHeight * 3;
+  padding-top: $lineHeight;
+  padding-bottom: $lineHeight;
+  @include medium {
+  padding-top: $lineHeight * 1;
+  padding-bottom: $lineHeight * 2;
+  }
 }
 
 .featured-list__item {
@@ -225,9 +229,9 @@ ol.list-links {
       margin: 0;
       position: absolute;
       top: 0;
-      height: 100%;
-      width: 100%;
-      left: 0;
+      right: 0;
+      // height: 100%;
+      // width: 100%;
     }
   }
 }

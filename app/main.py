@@ -29,7 +29,7 @@ JINJA_ENV = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR),
 # Webapp2 Sessions config
 config = {}
 config['webapp2_extras.sessions'] = {
-    'secret_key': 'navettes-not-so-secret-key',
+    'secret_key': 'carolinas-not-so-secret-key',
     'name': 'navette_session',
 }
 
@@ -133,7 +133,8 @@ class ServicesHandler(Handler):
 
 class ToursHandler(Handler):
     def get(self):
-        self.render("atputa.html")
+        events = Event.query().order(Event.added)
+        self.render("atputa.html", events=events)
 
 
 class ContactsHandler(Handler):
@@ -147,8 +148,15 @@ class AboutHandler(Handler):
 
 
 class TourHandler(Handler):
-    def get(self):
-        self.render("brauciens.html")
+    def get(self, id_str):
+        event = None
+        # if key_str:
+        #     key = ndb.Key(urlsafe=key_str)
+        #     if key:
+        #         event = key.get()
+        if id_str:
+            event = Event.get_by_id(int(id_str))
+        self.render("brauciens.html", event=event)
 
 
 class MailHandler(Handler):
@@ -177,16 +185,20 @@ class Event(ndb.Model):
     eventName = ndb.TextProperty(required=True)
     startDate = ndb.TextProperty(required=True)
     endDate = ndb.TextProperty()
+    location = ndb.TextProperty(required=True)
     excerpt = ndb.TextProperty(required=True)
     description = ndb.TextProperty(required=True)
     price = ndb.IntegerProperty(required=True)
+    multipriced = ndb.TextProperty()
     image = ndb.BlobProperty()
+    added = ndb.DateTimeProperty(auto_now_add=True)
 
     @staticmethod
     def addEvent(kind, **params):
         event = Event(**params)
         if event:
             event.put()
+        return event
 
 
 class EventHandler(Handler, blobstore_handlers.BlobstoreUploadHandler):
@@ -200,10 +212,18 @@ class EventHandler(Handler, blobstore_handlers.BlobstoreUploadHandler):
         ed = self.request.get('endDate')
         ex = self.request.get('excerpt')
         de = self.request.get('description')
+        loc = self.request.get('location')
         pr = int(self.request.get('price'))
+        mp = self.request.get("multipriced")
 
-        params = {'eventName': en, 'startDate': sd, 'endDate': ed,
+        params = {'eventName': en, 'startDate': sd, 'location': loc,
                   'excerpt': ex, 'description': de, 'price': pr}
+
+        if ed:
+            params['endDate'] = ed
+
+        if mp:
+            params['multipriced'] = mp
 
         # Get the picture and upload it
         upload_files = self.get_uploads('picture')
@@ -213,9 +233,11 @@ class EventHandler(Handler, blobstore_handlers.BlobstoreUploadHandler):
             img = blob_info.key()
             params['image'] = str(img)
 
-        Event.addEvent('Event', **params)
+        event = Event.addEvent('Event', **params)
         # self.redirect(self.request.referer)
-        self.redirect('/serve/' + str(img))
+        # self.redirect('/serve/' + str(img))
+        self.redirect('/atputa/' + str(event.key.id()))
+
 
 
 # Blobstore
@@ -238,12 +260,20 @@ class ThumbnailHandler(blobstore_handlers.BlobstoreDownloadHandler):
     def get(self, resource):
         resource = str(urllib.unquote(resource))
         blob_info = blobstore.BlobInfo.get(resource)
-        dimensions = self.request.get('dimensions')
-        size = int(dimensions) if dimensions else 100
+        width = self.request.get('w')
+        height = self.request.get('h')
+        if not width:
+            width = 700
+        else:
+            width = int(width)
+        if not height:
+            height = 700
+        else:
+            height = int(height)
 
         if blob_info:
             img = images.Image(blob_key=resource)
-            img.resize(width=size, height=size)
+            img.resize(width=width, height=height)
             thumbnail = img.execute_transforms(
                 output_encoding=images.JPEG)
 
@@ -277,11 +307,9 @@ app = webapp2.WSGIApplication([
     ('/serve/th/([^/]+)?', ThumbnailHandler),
     ('/pakalpojumi*', ServicesHandler),
     ('/atputa/pievienot', EventHandler),
+    ('/atputa/(.*)?', TourHandler),
     ('/atputa.*', ToursHandler),
     ('/kontakti*', ContactsHandler),
     ('/mail', MailHandler),
-    ('/atputa/lielais-getsbijs', GetsbijHandler),
-    ('/atputa/ziema-rozu-laukuma', ZRLHandler),
-    ('/atputa/spa', SPAHandler),
     ('/.*', MainHandler)
 ], config=config, debug=True)

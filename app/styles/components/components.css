@@ -926,6 +926,11 @@ pre {
     min-height: 208px;
   }
 }
+@media only screen and (max-width: 619px) {
+  .highlight-module__container {
+    padding-bottom: 52px;
+  }
+}
 
 .highlight-module__title {
   font-family: "Open Sans", sans-serif;
@@ -1607,6 +1612,11 @@ div.highlight > pre > code .il, code .highlight .il {
   text-align: center;
   padding: 26px 0 104px;
 }
+@media only screen and (max-width: 619px) {
+  .guides-section {
+    padding: 26px 0;
+  }
+}
 
 .guides-section > header p,
 .guides-section > header h2 {
@@ -1649,6 +1659,7 @@ div.highlight > pre > code .il, code .highlight .il {
 .featured-section {
   background: #f0f0f0 url(/images/turisms.jpg) no-repeat center center fixed;
   background-size: cover;
+  padding-top: 1px;
 }
 
 /**
@@ -2649,8 +2660,14 @@ ol.list-links.list-links--secondary a::before {
 
 /*==========  FEATURED LIST  ==========*/
 .featured-list {
-  padding-top: 78px;
-  padding-bottom: 78px;
+  padding-top: 26px;
+  padding-bottom: 26px;
+}
+@media only screen and (min-width: 620px) {
+  .featured-list {
+    padding-top: 26px;
+    padding-bottom: 52px;
+  }
 }
 
 .featured-list__item {
@@ -2712,9 +2729,7 @@ ol {
     margin: 0;
     position: absolute;
     top: 0;
-    height: 100%;
-    width: 100%;
-    left: 0;
+    right: 0;
   }
 }
 
@@ -3189,8 +3204,18 @@ object {
 .guides-list__item p {
   margin: 0 32px 0;
 }
+@media only screen and (max-width: 619px) {
+  .guides-list__item ul {
+    margin-top: 1em;
+  }
+}
 .guides-list__item ul, .guides-list__item li {
   text-align: left;
+}
+@media only screen and (max-width: 619px) {
+  .guides-list__item ul, .guides-list__item li {
+    padding: 0 15px;
+  }
 }
 @media only screen and (min-width: 620px) {
   .guides-list__item .primary-content {
@@ -3582,6 +3607,11 @@ form textarea {
 }
 form label {
   padding-top: 0.5em;
+}
+
+.event__img {
+  display: block;
+  margin-top: 1em;
 }
 
 /**

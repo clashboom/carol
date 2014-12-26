@@ -40,8 +40,18 @@
     margin: 0 32px 0;
   }
 
+  ul {
+    @include small-only {
+      margin-top: 1em;
+    }
+  }
+
   ul, li {
     text-align: left;
+    @include small-only {
+      padding: 0 15px;
+
+    }
   }
 
   .primary-content {
